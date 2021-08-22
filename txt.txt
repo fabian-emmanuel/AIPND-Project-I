@@ -1,0 +1,44 @@
+Counts Computed from the Results dictionary for input into the Results Statistics dictionary:
+Z: Number of Images
+length of results_dic, because filenames = key
+A: Number of Correct Dog matches
+Both labels are of dogs: results_dic[key][3] = 1 and results_dic[key][4] = 1
+B: Number of Dog Images
+Pet Label is a dog: results_dic[key][3] = 1
+C: Number of Correct Non-Dog matches
+Both labels are NOT of dogs: results_dic[key][3] = 0 and results_dic[key][4] = 0
+D: Number of Not Dog Images
+number images - number dog images --OR--
+Pet Label is NOT a dog: results_dic[key][3] = 0
+E: Number of Correct Breed matches
+Pet Label is a dog & Labels match: results_dic[key][3] = 1 and results_dic[key][2] = 1
+(Optional) Y: Number of label matches
+Labels match: results_dic[key][2] = 1
+Compute a Summary of the Percentages from the Results Statistics dictionary counts:
+Objective _1_a: Percentage of Correctly Classified Dog Images
+
+A Correctly classified dog images.
+B Number of dog images
+Percentage of correctly classified "dog" images: A/B * 100
+Objective _1_b: Percentage of Correctly Classified Non-Dog Images
+
+C Correctly classified NOT a dog images.
+D Number of NOT a dog images
+Percentage of correctly classified "Non-dog" images: C/D * 100
+Objective _2_: Percentage of Correctly Classified Dog Breeds
+
+E Correctly classified as a particular breed of dog images.
+B Number of dog images
+Percentage of correctly classified Dog Breed images: E/B * 100
+(Optional): Percentage Label Matches ( regardless if they're a dog)
+
+Y Number of label matches
+Z Number of images
+Percentage of correctly Matched Images ( regardless if they are a dog): Y/Z * 100
+Important Notes:
+
+You will need to initialize all the counts to a value of zero before iterating through results dictionary. As you iterate through results dictionary, if certain criterion are met you will need to increment these counters by 1.
+The percentages (and total number of images) can be generated from the counts (see percentage & count calculations above); therefore, these values should be calculated after counts have been calculated by iterating through the results dictionary.
+When calculating the percentage of correctly classified Non-Dog Images, use a conditional statement to check that D, the number of "not-a-dog" images, is greater than zero. To avoid division by zero error, only if D is greater than zero should C/D be computed; otherwise, this should be set to 0.
+Because the Results Statistics dictionary is created inside of the function and is a mutable object, you will need to return it's value at the end of the function (see section Mutable Data Types and Functions).
+;
