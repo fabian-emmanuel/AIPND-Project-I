@@ -47,8 +47,14 @@ def get_pet_labels(image_dir):
     results_dic = dict()
     for i in range(0, len(file_list), 1):
         if file_list[i][0] != ".":
+            pet_image = file_list[i].lower().split("_")
             pet_label = ""
-            pet_label += file_list[i]
+
+            for name in pet_image:
+                if name.isalpha():
+                    pet_label += name + " "
+            pet_label = pet_label.strip()
+
             if file_list[i] not in results_dic:
                 results_dic[file_list[i]] = [pet_label]
             else:

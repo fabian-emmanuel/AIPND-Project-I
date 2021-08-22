@@ -29,7 +29,8 @@ from classifier import classifier
 #       Notice that this function doesn't return anything because the 
 #       results_dic dictionary that is passed into the function is a mutable 
 #       data type so no return is needed.
-# 
+#
+
 def classify_images(images_dir, results_dic, model):
     """
     Creates classifier labels with classifier function, compares pet labels to 
@@ -67,12 +68,12 @@ def classify_images(images_dir, results_dic, model):
            None - results_dic is mutable data type so no return needed.         
     """
     for key in results_dic:
-        model_label = classifier(images_dir, model)
-        model_label.tolower().strip()
+        model_label = classifier(images_dir+key, model)
+        model_label.lower().strip()
         truth = results_dic[key][0]
         if truth in model_label:
-            results_dic[model_label[truth]].append(1)
+            results_dic[key].extend((model_label, 1))
         else:
-            results_dic[model_label[truth]].append(0)
+            results_dic[key].extend((model_label, 0))
 
 
